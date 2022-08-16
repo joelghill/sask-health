@@ -1,1 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+html, body {
+    background: transparent;
+    height: 100%;
+    margin: 0;
+    padding: 0;    
+}
+
+body {
+    -webkit-touch-callout: none;                 //prevent callout to copy image, etc when tap to hold 
+    -webkit-text-size-adjust: none;              //prevent webkit from resizing text to fit 
+    -webkit-user-select: node;                   //prevent copy paste, to allow, change 'none' to 'text'  
+    min-height: 100%;
+    margin: 0;
+    padding: 0;  
+}
+
+// app-root {
+//     display: block;
+//     height: 100%;
+//   }
