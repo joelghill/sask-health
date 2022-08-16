@@ -6,6 +6,8 @@ Environment files are generated dynamically from environment variables. This see
 
 ## Development server
 
+Before building or debugging the app, a `.env` file will be required in the root of the project folder. Use `.env.example` as a template.
+
 Run `npm start` for a dev server (and to compile the environment variables). Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Code scaffolding
