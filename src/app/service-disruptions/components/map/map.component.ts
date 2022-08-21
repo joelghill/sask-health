@@ -8,19 +8,18 @@ import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { ServiceDisruption } from 'src/app/core/models/service-disruption';
 
 @Component({
-  selector: 'disruptions-map',
+  selector: 'app-disruptions-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
+  styleUrls: ['./map.component.scss'],
 })
 export class MapComponent implements OnInit {
-
   apiLoaded: Observable<boolean>;
-  apiUrl: string = 'https://maps.googleapis.com/maps/api/js?key=' + environment.GOOGLE_API_KEY;
+  apiUrl: string =
+    'https://maps.googleapis.com/maps/api/js?key=' + environment.GOOGLE_API_KEY;
 
   disruptions: ServiceDisruption[] = [];
 
   @ViewChild('googleMap') map!: GoogleMap;
-
 
   mapOptions: google.maps.MapOptions = {
     zoomControl: true,
@@ -28,13 +27,13 @@ export class MapComponent implements OnInit {
     disableDoubleClickZoom: false,
     restriction: {
       latLngBounds: {
-        north: 60.1,
-        south: 48.9,
-        west: -110,
-        east: -101
-      }
-    }
-  }
+        north: 62,
+        south: 46,
+        west: -112,
+        east: -100,
+      },
+    },
+  };
 
   constructor(
     private http: HttpClient,
@@ -42,20 +41,18 @@ export class MapComponent implements OnInit {
   ) {
     this.apiLoaded = http.jsonp(this.apiUrl, 'callback').pipe(
       map(() => true),
-      catchError(() => of(false)),
+      catchError(() => of(false))
     );
   }
 
   ngOnInit(): void {
-
     this.disruptionsService.getDisruptions().subscribe({
-
-      next: result => {
+      next: (result) => {
         this.disruptions = result;
       },
-      error: e => {
+      error: (e) => {
         console.log(e);
-      }
+      },
     });
   }
 }
