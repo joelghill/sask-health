@@ -18,8 +18,10 @@ export class MapComponent implements OnInit {
     'https://maps.googleapis.com/maps/api/js?key=' + environment.GOOGLE_API_KEY;
 
   disruptions: ServiceDisruption[] = [];
+  selectedDisruption?: ServiceDisruption;
 
-  @ViewChild('googleMap') map!: GoogleMap;
+  @ViewChild('googleMap') map?: GoogleMap;
+  @ViewChild(MapInfoWindow) infoWindow?: MapInfoWindow;
 
   mapOptions: google.maps.MapOptions = {
     zoomControl: true,
@@ -29,8 +31,8 @@ export class MapComponent implements OnInit {
       latLngBounds: {
         north: 62,
         south: 46,
-        west: -112,
-        east: -100,
+        west: -115,
+        east: -95,
       },
     },
   };
@@ -39,6 +41,8 @@ export class MapComponent implements OnInit {
     private http: HttpClient,
     private disruptionsService: ServiceDisruptionsService
   ) {
+    // Lazy load google maps API
+    // TODO: Move to root service
     this.apiLoaded = http.jsonp(this.apiUrl, 'callback').pipe(
       map(() => true),
       catchError(() => of(false))
@@ -54,5 +58,13 @@ export class MapComponent implements OnInit {
         console.log(e);
       },
     });
+  }
+
+  openInfoWindow(marker: MapMarker) {
+    let communityName = marker.getTitle();
+    this.selectedDisruption = this.disruptions.find(
+      (d) => d.community_name == communityName
+    );
+    this.infoWindow?.open(marker);
   }
 }

@@ -2,19 +2,26 @@
   <google-map
     #googleMap
     [options]="mapOptions"
-    [center]="{ lat: 52, lng: 105.7 }"
+    [center]="{ lat: 52, lng: -105.7 }"
     [zoom]="6"
     width="100%"
     height="100%"
   >
     <map-marker
+      #marker="mapMarker"
       *ngFor="let disruption of this.disruptions"
       [position]="{
         lat: disruption.location.latitude,
         lng: disruption.location.longitude
       }"
       [title]="disruption.community_name"
+      (mapClick)="openInfoWindow(marker)"
     >
     </map-marker>
+    <map-info-window
+      ><app-disruption-details
+        [details]="this.selectedDisruption"
+      ></app-disruption-details
+    ></map-info-window>
   </google-map>
 </div>
