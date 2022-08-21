@@ -1,3 +1,6 @@
 <div class="h-full">
+  <div *ngIf="this.messages">
+    <p-messages [(value)]="this.messages" [enableService]="false"></p-messages>
+  </div>
   <app-disruptions-map></app-disruptions-map>
 </div>
