@@ -7,9 +7,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ServiceDisruptionsModule } from './service-disruptions/service-disruptions.module';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from 'primeng/api';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, AboutComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

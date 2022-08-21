@@ -4,6 +4,7 @@ import { SharedModule } from './shared/shared.module';
 import { PrimeIcons } from 'primeng/api';
 import { DisruptionsPageComponent } from './service-disruptions/components/disruptions-page/disruptions-page.component';
 import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,15 @@ const routes: Routes = [
           navLabel: 'Map',
           icon: PrimeIcons.MAP,
           link: './map',
+        },
+      },
+      {
+        path: 'about',
+        component: AboutComponent,
+        data: {
+          navLabel: 'About',
+          icon: PrimeIcons.INFO_CIRCLE,
+          link: './about',
         },
       },
     ],
