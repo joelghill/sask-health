@@ -1,0 +1,9 @@
+<div class="max-w-10rem">
+  <h4>{{ details?.facility_name }}</h4>
+  <p>{{ details?.title }}</p>
+
+  <div><b>Start Date: </b>{{ details?.start_date | date }}</div>
+  <div *ngIf="details?.end_date">
+    <b>End Date: </b>{{ details?.end_date | date }}
+  </div>
+</div>
