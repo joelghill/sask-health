@@ -13,6 +13,10 @@ COPY . /app
 RUN npm run build
 
 FROM nginx:1.23-alpine
+
+ENV GOOGLE_API_KEY=$GOOGLE_API_KEY
+ENV DISRUPTIONS_HOST=$DISRUPTIONS_HOST
+
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/dist/sk-health /usr/share/nginx/html
 
